@@ -2,7 +2,7 @@
   <div id="app">
     
     <HeaderComp @getFilmToSearch ="getFilmToSearch"/>
-    <MainComp />
+    <MainComp :selectedFilms ="filmsContainer"/>
 
   </div>
 </template>
@@ -31,7 +31,6 @@ data(){
     },
 
     filmsContainer: [],
-    stringToSearch:''
   }
 },
 
