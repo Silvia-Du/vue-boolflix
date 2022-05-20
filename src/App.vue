@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <HeaderComp />
+    <HeaderComp @getFilmToSearch ="getFilmToSearch"/>
     <MainComp />
 
   </div>
@@ -23,10 +23,15 @@ export default {
 data(){
   return{
     apiUrl: 'https://api.themoviedb.org/3/search/movie/?',
+
     apiParams: {
       api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
-      query: 'harry potter'
-    }
+      query: 'harry potter',
+      language: 'it_IT'
+    },
+
+    filmsContainer: [],
+    stringToSearch:''
   }
 },
 
@@ -38,13 +43,21 @@ methods:{
       params: this.apiParams
     })
     .then(response=>{
-      console.log(response.data);
+      this.filmsContainer = response.data.results;
+      console.log(this.filmsContainer);
     })
     .catch(error => {
       console.log(error);
     })
 
+  },
+
+  getFilmToSearch(receivedSTring){
+    this.query = receivedSTring;
+    console.log(this.query);
   }
+
+
 },
 
 mounted(){

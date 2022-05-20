@@ -1,13 +1,23 @@
 <template>
   <div class="_header d-flex align-items-center justify-content-end px-3">
-    <input type="text" class="form-control me-2" placeholder="cerca un film">
+
+    <input 
+    v-model="tipedText" @keyup.enter="$emit('getFilmToSearch', tipedText)"
+    type="text" class="form-control me-2" placeholder="cerca un film">
     <button type="button" class="btn btn-warning">Cerca</button>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HeaderComp'
+  name: 'HeaderComp',
+
+  data(){
+    return{
+      tipedText: ''
+    }
+  }
 }
 </script>
 
