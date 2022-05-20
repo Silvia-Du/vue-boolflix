@@ -1,12 +1,15 @@
 <template>
   <div class="film">
-    <div class="data-box">
-      <h4>{{filmToPrint.title}}</h4>
-      <p>{{filmToPrint.original_title}}</p>
-      <p>{{filmToPrint.original_language}}</p>
-      <p>{{filmToPrint.vote_average}}</p>
-    </div>
-   
+      <!-- <img :src="`${imgUrl}${card.backdrop_path}`" alt=""> -->
+      <img class="img-fluid" :src="`${imgUrl}${card.poster_path}`" alt="">
+      <!-- <h4>{{card.title}}</h4>
+      <p>{{card.original_title}}</p>
+      <p>{{card.original_language}}</p>
+      <p>{{card.vote_average}}</p> -->
+      <div class="info-box">
+        
+      </div>
+
   </div>
 </template>
 
@@ -14,7 +17,13 @@
 export default {
   name: 'CardItem',
   props: {
-    filmToPrint: Object
+    card: Object
+  },
+
+  data(){
+    return{
+      imgUrl: 'https://image.tmdb.org/t/p/w500'
+    }
   }
 }
 </script>
@@ -22,15 +31,22 @@ export default {
 <style lang="scss">
 
   .film{
-    flex-basis: 20%;
-    min-height: 200px;
-    padding: 15px;
+    flex-basis: 230px;
+    margin: 10px;
     color: white;
-    background-color: rgb(54, 50, 50);
-    .data-box{
-      background-color: #2e3a46;
-      height: 100%;
-      padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 10px 10px 15px black;
+    transition: all 1s;
+    &:hover{
+      transform: scale(1.3);
+    }
+    &:Hover img{
+      opacity: 0%;
+    }
+
+    img{
+      transition: all 2s;
     }
   }
 

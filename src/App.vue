@@ -23,14 +23,8 @@ export default {
 data(){
   return{
     apiUrl: 'https://api.themoviedb.org/3/search/movie/?',
-
-    apiParams: {
-      api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
-      query: '',
-      language: 'it_IT'
-    },
-
     filmsContainer: [],
+    isLoading: false
   }
 },
 
@@ -50,6 +44,8 @@ methods:{
     .then(response=>{
       this.filmsContainer = response.data.results;
       console.log(this.filmsContainer);
+      this.isLoading = true;
+
     })
     .catch(error => {
       console.log(error);

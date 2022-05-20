@@ -1,7 +1,7 @@
 <template>
   <main>
 
-    <div class="container d-flex flex-wrap debug">
+    <div class="container d-flex flex-wrap pt-5">
 
       <div v-if="selectedFilms === []">
         <h3>Non ci sono risultati per la tua ricerca</h3>
@@ -10,7 +10,7 @@
       
         <CardItem v-else
         v-for="film in selectedFilms" :key="film.id"
-        :filmToPrint ="film"/>
+        :card ="film"/>
       
      
 
@@ -43,7 +43,7 @@ export default {
 
 main{
   min-height: calc(100vh - 80px);
-  background-color: rgb(54, 50, 50);
+  background-color: rgb(37, 36, 36);
   
 }
 

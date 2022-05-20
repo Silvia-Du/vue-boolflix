@@ -1,12 +1,19 @@
 <template>
-  <div class="_header d-flex align-items-center justify-content-end px-3">
+  <div class="_header d-flex align-items-center justify-content-between px-3">
+    <img class="mt-2" src="../assets/img/logo.png" alt="logo">
 
-    <input 
-    v-model="tipedText" @keyup.enter="startResearch"
-    type="text" class="form-control me-2" placeholder="cerca un film">
-    <button 
-    @click="startResearch"
-    type="button" class="btn btn-warning">Cerca</button>
+    <div class="d-flex">
+
+      <input 
+      v-model="tipedText" @keyup.enter="startResearch"
+      type="text" class="form-control me-2" placeholder="cerca un film">
+
+      <button 
+      @click="startResearch"
+      type="button" class="btn btn-warning">Cerca
+      </button>
+
+    </div>
 
   </div>
 </template>
@@ -36,7 +43,11 @@ export default {
 
 ._header{
   height: 80px;
-  background-color: rgb(29, 26, 26);
+  background-color: black;
+  img{
+    width: 160px;
+    justify-self: flex-start;
+  }
   input{
     max-width: 250px;
   }
