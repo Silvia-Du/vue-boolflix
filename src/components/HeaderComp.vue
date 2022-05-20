@@ -2,9 +2,11 @@
   <div class="_header d-flex align-items-center justify-content-end px-3">
 
     <input 
-    v-model="tipedText" @keyup.enter="$emit('getFilmToSearch', tipedText)"
+    v-model="tipedText" @keyup.enter="startResearch"
     type="text" class="form-control me-2" placeholder="cerca un film">
-    <button type="button" class="btn btn-warning">Cerca</button>
+    <button 
+    @click="startResearch"
+    type="button" class="btn btn-warning">Cerca</button>
 
   </div>
 </template>
@@ -16,6 +18,15 @@ export default {
   data(){
     return{
       tipedText: ''
+    }
+  },
+
+
+  methods: {
+
+    startResearch(){
+      this.$emit('getFilmToSearch', this.tipedText);
+      this.tipedText = ''
     }
   }
 }

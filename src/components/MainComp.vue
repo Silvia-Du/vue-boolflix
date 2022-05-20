@@ -2,10 +2,19 @@
   <main>
 
     <div class="container d-flex flex-wrap debug">
+
+      <div v-if="selectedFilms === []">
+        <h3>Non ci sono risultati per la tua ricerca</h3>
+      </div>
       
-      <CardItem 
-      v-for="film in selectedFilms" :key="film.id"
-      :filmToPrint ="film"/>
+      
+        <CardItem v-else
+        v-for="film in selectedFilms" :key="film.id"
+        :filmToPrint ="film"/>
+      
+     
+
+
     </div>
 
   </main>
@@ -20,13 +29,13 @@ export default {
     },
     components: { CardItem },
 
-
-
     data(){
       return{
 
       }
-    }
+    },
+
+
 }
 </script>
 

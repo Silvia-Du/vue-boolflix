@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <HeaderComp @getFilmToSearch ="getFilmToSearch"/>
+    <HeaderComp @getFilmToSearch ="getData"/>
     <MainComp :selectedFilms ="filmsContainer"/>
 
   </div>
@@ -26,7 +26,7 @@ data(){
 
     apiParams: {
       api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
-      query: 'harry potter',
+      query: '',
       language: 'it_IT'
     },
 
@@ -36,10 +36,16 @@ data(){
 
 methods:{
 
-  getData(){
+  getData(receivedSTring){
+
+    this.query = receivedSTring;
 
     axios.get(this.apiUrl,{
-      params: this.apiParams
+      params: {
+        api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
+        query: receivedSTring,
+        language: 'it_IT'
+      } 
     })
     .then(response=>{
       this.filmsContainer = response.data.results;
@@ -51,19 +57,8 @@ methods:{
 
   },
 
-  getFilmToSearch(receivedSTring){
-    this.query = receivedSTring;
-    console.log(this.query);
-  }
-
 
 },
-
-mounted(){
-
-  this.getData()
-
-}
 
 
 }
