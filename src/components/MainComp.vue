@@ -1,33 +1,30 @@
 <template>
   <main>
 
-    <div class="container d-flex flex-wrap pt-5">
+    <div class="container d-flex flex-wrap pt-5 justify-content-center">
 
-      <div v-if="selectedFilms === []">
-        <h3>Non ci sono risultati per la tua ricerca</h3>
+      <div class="emptyResearch mt-5" v-if="checkInput == '' ">
+        <h3>Che cosa vuoi vedere?</h3>
       </div>
-      
-      
-        <CardItem v-else
-        v-for="film in selectedFilms" :key="film.id"
-        :card ="film"/>
-      
-     
-
-
+      <div class="errorResearch mt-5" v-else-if="selectedFilms.length == 0 ">
+        <h3>Errore di caricamento, la ricerca non ha prodotto risultati</h3>
+      </div>
+      <MovieComp v-else :cardContainer="selectedFilms"/>
     </div>
 
   </main>
 </template>
 
 <script>
-import CardItem from './CardItem.vue';
+
+import MovieComp from './MovieComp.vue';
 export default {
     name: "MainComp",
     props: {
+        checkInput: String,
         selectedFilms: Array
     },
-    components: { CardItem },
+    components: { MovieComp },
 
     data(){
       return{
@@ -40,10 +37,17 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/style/vars.scss';
+
+
 
 main{
   min-height: calc(100vh - 80px);
-  background-color: rgb(37, 36, 36);
+  background-color: $bgColor;
+
+  .emptyResearch, .errorResearch{
+    color: white;
+  }
   
 }
 

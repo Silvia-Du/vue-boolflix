@@ -2,7 +2,7 @@
   <div id="app">
     
     <HeaderComp @getFilmToSearch ="getData"/>
-    <MainComp :selectedFilms ="filmsContainer"/>
+    <MainComp :selectedFilms ="filmsContainer" :checkInput="checkSting"/>
 
   </div>
 </template>
@@ -24,16 +24,14 @@ data(){
   return{
     apiUrl: 'https://api.themoviedb.org/3/search/movie/?',
     filmsContainer: [],
-    isLoading: false
+    checkSting: '',
   }
 },
 
 methods:{
 
   getData(receivedSTring){
-
-    this.query = receivedSTring;
-
+    this.checkSting = receivedSTring;
     axios.get(this.apiUrl,{
       params: {
         api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
@@ -45,7 +43,6 @@ methods:{
       this.filmsContainer = response.data.results;
       console.log(this.filmsContainer);
       this.isLoading = true;
-
     })
     .catch(error => {
       console.log(error);
@@ -62,6 +59,6 @@ methods:{
 
 <style lang="scss">
 
-@import './assets/style/general.scss'
+@import './assets/style/general.scss';
 
 </style>

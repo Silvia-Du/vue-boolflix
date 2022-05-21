@@ -10,7 +10,7 @@
 
       <button 
       @click="startResearch"
-      type="button" class="btn btn-warning">Cerca
+      type="button" class="btn btn-danger">Cerca
       </button>
 
     </div>
@@ -40,12 +40,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/style/vars.scss';
+
 
 ._header{
   height: 80px;
-  background-color: black;
+  background-color: $bgColor;
   img{
-    width: 160px;
+    width: 180px;
     justify-self: flex-start;
   }
   input{
