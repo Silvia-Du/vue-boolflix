@@ -1,6 +1,11 @@
 <template>
   <div class="_header d-flex align-items-center justify-content-between px-3">
-    <img class="mt-2" src="../assets/img/logo.png" alt="logo">
+    <div class="left-btn-box d-flex">
+
+      <img class="mt-2" src="../assets/img/logo.png" alt="logo">
+      <button @click="$emit('getTypeResearch', 'movie')" type="button" class="btn btn-dark">Film</button>
+      <button @click="$emit('getTypeResearch', 'tv')" type="button" class="btn btn-dark">Serie</button>
+    </div>
 
     <div class="d-flex">
 
@@ -10,7 +15,7 @@
 
       <button 
       @click="startResearch"
-      type="button" class="btn btn-danger">Cerca
+      type="button" class="btn-start btn-danger">Cerca
       </button>
 
     </div>
@@ -24,7 +29,7 @@ export default {
 
   data(){
     return{
-      tipedText: ''
+      tipedText: '',
     }
   },
 
@@ -34,7 +39,8 @@ export default {
     startResearch(){
       this.$emit('getFilmToSearch', this.tipedText);
       this.tipedText = ''
-    }
+    },
+
   }
 }
 </script>
@@ -46,12 +52,24 @@ export default {
 ._header{
   height: 80px;
   background-color: $bgColor;
+.left-btn-box{
+  button{
+    background-color: $bgColor;
+    border: 0;
+    margin-left: 20px;
+    align-self: flex-end;
+  }
   img{
     width: 180px;
     justify-self: flex-start;
   }
+}
+
   input{
     max-width: 250px;
+  }
+  .btn-start{
+    background-color: $redColor;
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <HeaderComp @getFilmToSearch ="getData"/>
+    <HeaderComp @getFilmToSearch ="getData" @getTypeResearch="getTypeResearch"/>
     <MainComp :selectedFilms ="filmsContainer" :checkInput="checkSting"/>
 
   </div>
@@ -10,6 +10,8 @@
 <script>
 import HeaderComp from './components/HeaderComp.vue';
 import MainComp from './components/MainComp.vue';
+// import FlagIcon from 'vue-flag-icon'
+// Vue.use(FlagIcon);
 
 import axios from 'axios'
 
@@ -25,10 +27,17 @@ data(){
     apiUrl: 'https://api.themoviedb.org/3/search/movie/?',
     filmsContainer: [],
     checkSting: '',
+    typeOfResearch:'',
   }
 },
 
 methods:{
+
+  
+  getTypeResearch(stringOfType){
+    this.typeOfResearch = stringOfType;
+    console.log(this.typeOfResearch);
+  },
 
   getData(receivedSTring){
     this.checkSting = receivedSTring;
@@ -36,7 +45,7 @@ methods:{
       params: {
         api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
         query: receivedSTring,
-        language: 'it_IT'
+        language: 'it-IT'
       } 
     })
     .then(response=>{
@@ -49,6 +58,8 @@ methods:{
     })
 
   },
+
+
 
 
 },

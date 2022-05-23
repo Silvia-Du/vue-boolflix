@@ -7,10 +7,10 @@
       <!-- layover -->
       <div class="layover text-center d-flex flex-column justify-content-center align-items-center">
         <p class="title">Title: {{card.title}}</p>
-        <p>Original title:{{card.original_title}}</p> 
-        <p class="">Lang:{{card.original_language}}</p>
-        <h1><font-awesome-icon icon="hat-wizard" /></h1>
-        <p class="">&starf;{{card.vote_average}}</p>
+        <!-- <p v-if="card.original_language == 'en'">Original title:{{card.original_title}}</p> -->
+        <span v-if="card.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
+        <span v-else>lingua originale :<flag :iso="card.original_language"/></span>
+        <p class=""><i class="fa-solid fa-star"></i>{{card.vote_average}}</p>
         <button 
         @click="showInfo = !showInfo"
         type="button" class="btn btn-danger">More Info</button>
@@ -34,12 +34,11 @@ export default {
   data(){
     return{
       imgUrl: 'https://image.tmdb.org/t/p/w500',
-      showInfo: false
+      showInfo: false,
+      languageString: ''
     }
   },
 
-  methods: {
-  },
 }
 </script>
 
