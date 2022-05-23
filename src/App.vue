@@ -2,7 +2,7 @@
   <div id="app">
     
     <HeaderComp @getTitleToSearch ="getData" @getTypeResearch="getTypeResearch"/>
-    <MainComp :selectedFilms ="movieContainer" :selectedSeries="seriesContainer" :checkInput="checkSting"/>
+    <MainComp :selectedFilms ="movieContainer" :selectedSeries="seriesContainer" :checkInput="checkSting" :resarchType="typeOfResearch"/>
 
   </div>
 </template>

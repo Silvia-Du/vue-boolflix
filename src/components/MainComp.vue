@@ -26,6 +26,7 @@ export default {
     name: "MainComp",
     props: {
         checkInput: String,
+        resarchType: String,
         selectedFilms: Array,
         selectedSeries: Array
     },
