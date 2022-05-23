@@ -2,19 +2,42 @@
 
   <div class="card">
 
-      <img class="img-fluid" :src="`${imgUrl}${filmItem.poster_path}`" :alt="getName">
-      
-      <!-- layover -->
-      <div class="layover text-center d-flex flex-column justify-content-center align-items-center">
-        <p class="title">Title: {{getName}}</p>
+      <div v-if="type === 'movie'">
+    
+        <img class="img-fluid" :src="`${imgUrl}${filmItem.poster_path}`" :alt="filmItem.title">
 
-        <!-- <p v-if="card.original_language == 'en'">Original title:{{card.original_title}}</p> -->
-        <span v-if="card.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
-        <span v-else>lingua originale :<flag :iso="card.original_language"/></span>
-        <p class=""><i class="fa-solid fa-star"></i>{{card.vote_average}}</p>
-        <button 
-        @click="showInfo = !showInfo"
-        type="button" class="btn btn-danger">More Info</button>
+        
+        <!-- layover -->
+        <div class="layover text-center d-flex flex-column justify-content-center align-items-center">
+          <p class="title">Title: {{filmItem.title}}</p>
+  
+          <!-- <p v-if="card.original_language == 'en'">Original title:{{card.original_title}}</p> -->
+          <span v-if="filmItem.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
+          <span v-else>lingua originale :<flag :iso="filmItem.original_language"/></span>
+          <p class=""><i class="fa-solid fa-star"></i>{{filmItem.vote_average}}</p>
+          <button 
+          @click="showInfo = !showInfo"
+          type="button" class="btn btn-danger">More Info</button>
+        </div>
+        
+      </div>
+      <div v-else>
+
+        <img class="img-fluid" :src="`${imgUrl}${serieItem.poster_path}`" :alt="serieItem.name">
+        
+        <!-- layover -->
+        <div class="layover text-center d-flex flex-column justify-content-center align-items-center">
+          <p class="title">Title: {{serieItem.name}}</p>
+  
+          <!-- <p v-if="card.original_language == 'en'">Original title:{{card.original_title}}</p> -->
+          <span v-if="serieItem.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
+          <span v-else>lingua originale :<flag :iso="serieItem.original_language"/></span>
+          <p class=""><i class="fa-solid fa-star"></i>{{serieItem.vote_average}}</p>
+          <button 
+          @click="showInfo = !showInfo"
+          type="button" class="btn btn-danger">More Info</button>
+        </div>
+
       </div>
 
 
@@ -41,33 +64,33 @@ export default {
     }
   },
 
-  computed:{
+  // computed:{
 
-    getObject(){
+  //   getObject(){
 
-      let objectToPrint = {
-        name:'',
-        originalName:'',
-        imgPath: '',
-        original_language: '',
-        vote: ''
-      } 
-     if(type === 'movie'){
-       objectToPrint = this.filmItem;
-       objectToPrint.name = this.filmItem.title;
-       objectToPrint.original_language = this.filmItem.original_title;
-       objectToPrint.vote = this.filmItem.
-     }
+  //     let objectToPrint = {
+  //       name:'',
+  //       originalName:'',
+  //       imgPath: '',
+  //       original_language: '',
+  //       vote: ''
+  //     } 
+  //    if(type === 'movie'){
+  //      objectToPrint = this.filmItem;
+  //      objectToPrint.name = this.filmItem.title;
+  //      objectToPrint.original_language = this.filmItem.original_title;
+  //      objectToPrint.vote = this.filmItem.
+  //    }
 
-     if(type === 'tv'){
-        objectToPrint = this.serieItem;
-        objectToPrint.name = this.filmItem.title;
-        objectToPrint.original_language = this.filmItem.original_title;
-     }
-     return objectToPrint
-   }
+  //    if(type === 'tv'){
+  //       objectToPrint = this.serieItem;
+  //       objectToPrint.name = this.filmItem.title;
+  //       objectToPrint.original_language = this.filmItem.original_title;
+  //    }
+  //    return objectToPrint
+  //  }
 
-  }
+  // }
 }
 
 
