@@ -9,7 +9,10 @@
       <div class="errorResearch mt-5" v-else-if="selectedFilms.length == 0 ">
         <h3>Errore di caricamento, la ricerca non ha prodotto risultati</h3>
       </div>
-      <MovieComp v-else :cardContainer="selectedFilms"/>
+      <div v-else>
+        <MovieComp :cardContainer="selectedFilms"/>
+        <SeriesComp :seriesContainer="selectedSeries" />
+      </div>
     </div>
 
   </main>
@@ -18,13 +21,15 @@
 <script>
 
 import MovieComp from './MovieComp.vue';
+import SeriesComp from './SeriesComp.vue';
 export default {
     name: "MainComp",
     props: {
         checkInput: String,
-        selectedFilms: Array
+        selectedFilms: Array,
+        selectedSeries: Array
     },
-    components: { MovieComp },
+    components: { MovieComp, SeriesComp },
 
     data(){
       return{

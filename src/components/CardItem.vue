@@ -1,12 +1,13 @@
 <template>
 
-  <div class="film">
+  <div class="card">
 
       <img class="img-fluid" :src="`${imgUrl}${card.poster_path}`" alt="card.title">
       
       <!-- layover -->
       <div class="layover text-center d-flex flex-column justify-content-center align-items-center">
         <p class="title">Title: {{card.title}}</p>
+
         <!-- <p v-if="card.original_language == 'en'">Original title:{{card.original_title}}</p> -->
         <span v-if="card.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
         <span v-else>lingua originale :<flag :iso="card.original_language"/></span>
@@ -16,9 +17,6 @@
         type="button" class="btn btn-danger">More Info</button>
       </div>
 
-      <!-- box al click -->
-       <!-- <div v-show="showInfo" class="info-row container">
-      </div> -->
 
   </div>
 
@@ -28,7 +26,8 @@
 export default {
   name: 'CardItem',
   props: {
-    card: Object
+    filmItem: Object,
+    serieItem: Object
   },
 
   data(){
@@ -44,7 +43,7 @@ export default {
 
 <style lang="scss">
 
-  .film{
+  .card{
     position: relative;
     flex-basis: 230px;
     height: 330px;

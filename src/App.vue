@@ -2,7 +2,7 @@
   <div id="app">
     
     <HeaderComp @getFilmToSearch ="getData" @getTypeResearch="getTypeResearch"/>
-    <MainComp :selectedFilms ="filmsContainer" :checkInput="checkSting"/>
+    <MainComp :selectedFilms ="movieContainer" :selectedSeries="seriesContainer" :checkInput="checkSting"/>
 
   </div>
 </template>
@@ -24,8 +24,9 @@ export default {
 
 data(){
   return{
-    apiUrl: 'https://api.themoviedb.org/3/search/movie/?',
-    filmsContainer: [],
+    movieContainer: [],
+    seriesContainer: [],
+    researchType:['movie', 'tv'],
     checkSting: '',
     typeOfResearch:'',
   }
@@ -41,21 +42,38 @@ methods:{
 
   getData(receivedSTring){
     this.checkSting = receivedSTring;
-    axios.get(this.apiUrl,{
+
+    this.researchType.forEach(type =>{
+      
+      axios.get(`https://api.themoviedb.org/3/search/${type}/?`,{
       params: {
         api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
         query: receivedSTring,
         language: 'it-IT'
       } 
-    })
-    .then(response=>{
-      this.filmsContainer = response.data.results;
-      console.log(this.filmsContainer);
-      this.isLoading = true;
-    })
-    .catch(error => {
-      console.log(error);
-    })
+      })
+      .then(response=>{
+        console.log(response.data.results);
+        if(type === 'movie'){
+          this.movieContainer = response.data.results;
+          console.log(this.movieContainer);
+        }
+
+        if(type === 'tv'){
+          this.seriesContainer = response.data.results;
+          console.log(this.seriesContainer);
+        }
+       
+      })
+      .catch(error => {
+        console.log(error);
+      })
+
+    }) 
+    
+
+    
+   
 
   },
 
