@@ -2,11 +2,11 @@
 
   <div class="card">
 
-      <img class="img-fluid" :src="`${imgUrl}${card.poster_path}`" alt="card.title">
+      <img class="img-fluid" :src="`${imgUrl}${filmItem.poster_path}`" :alt="getName">
       
       <!-- layover -->
       <div class="layover text-center d-flex flex-column justify-content-center align-items-center">
-        <p class="title">Title: {{card.title}}</p>
+        <p class="title">Title: {{getName}}</p>
 
         <!-- <p v-if="card.original_language == 'en'">Original title:{{card.original_title}}</p> -->
         <span v-if="card.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
@@ -27,18 +27,50 @@ export default {
   name: 'CardItem',
   props: {
     filmItem: Object,
-    serieItem: Object
+    serieItem: Object,
+    type: String
   },
 
   data(){
     return{
       imgUrl: 'https://image.tmdb.org/t/p/w500',
       showInfo: false,
-      languageString: ''
+      languageString: '',
+      objectToPrint: {}
+   
     }
   },
 
+  computed:{
+
+    getObject(){
+
+      let objectToPrint = {
+        name:'',
+        originalName:'',
+        imgPath: '',
+        original_language: '',
+        vote: ''
+      } 
+     if(type === 'movie'){
+       objectToPrint = this.filmItem;
+       objectToPrint.name = this.filmItem.title;
+       objectToPrint.original_language = this.filmItem.original_title;
+       objectToPrint.vote = this.filmItem.
+     }
+
+     if(type === 'tv'){
+        objectToPrint = this.serieItem;
+        objectToPrint.name = this.filmItem.title;
+        objectToPrint.original_language = this.filmItem.original_title;
+     }
+     return objectToPrint
+   }
+
+  }
 }
+
+
 </script>
 
 <style lang="scss">

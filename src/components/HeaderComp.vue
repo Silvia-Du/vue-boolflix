@@ -37,7 +37,7 @@ export default {
   methods: {
 
     startResearch(){
-      this.$emit('getFilmToSearch', this.tipedText);
+      this.$emit('getTitleToSearch', this.tipedText);
       this.tipedText = ''
     },
 

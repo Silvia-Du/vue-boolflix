@@ -4,7 +4,7 @@
     
     <CardItem
     v-for="film in cardContainer" :key="film.id"
-    :filmItem ="film"/>
+    :filmItem ="film" :type="'movie'"/>
 
   </div>
 

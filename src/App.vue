@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <HeaderComp @getFilmToSearch ="getData" @getTypeResearch="getTypeResearch"/>
+    <HeaderComp @getTitleToSearch ="getData" @getTypeResearch="getTypeResearch"/>
     <MainComp :selectedFilms ="movieContainer" :selectedSeries="seriesContainer" :checkInput="checkSting"/>
 
   </div>

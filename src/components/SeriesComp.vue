@@ -2,7 +2,7 @@
 
    <div class="container d-flex flex-wrap pt-5">
     
-    <CardItem :v-for="serie in seriesContainer" :key="serie.id" :serieItem="serie"/>
+    <CardItem :v-for="serie in seriesContainer" :key="serie.id" :serieItem="serie" :type="'tv'"/>
 
   </div>
 
