@@ -3,7 +3,7 @@
  
 
 
-    <div class="_card d-flex mx-5">
+    <div class="_card d-flex mx-5" @mouseleave="resetFunction()">
 
       <div class="img-box">
         <img class="img-fluid" :src="`${imgUrl}${card.poster_path}`" :alt="card.title">
@@ -92,6 +92,11 @@ export default {
           })
         })
       },
+
+      resetFunction(){
+        this.genresCard = [],
+        this.cardCast = []
+      }
     },
 
     computed: {
