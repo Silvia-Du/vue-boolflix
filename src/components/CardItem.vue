@@ -10,7 +10,7 @@
         <img v-if="card.poster_path == null" :src="require('../assets/img/img-alt.png')" alt="">
       </div>
 
-      <div class="text-box pt-5">
+      <div class="text-box pt-3">
         <div class="text">
           <p class="title text-uppercase">{{card.title || card.name}}</p>
           <p>Original title:{{card.original_title || card.original_name}}</p>
@@ -23,10 +23,18 @@
             <i v-for="(string, index) in fullStar" :key="index" :class="`fa-${string} fa-star`"></i>
           </div>
 
-          <button 
-          @click="shwInfo()"
-          type="button" class="btn btn-danger">More Info</button>
+          <button @click="shwInfo()" type="button" class="btn btn-danger">More Info</button>
 
+          <div class="plus mt-2 p-1">
+
+            <span class="text-uppercase" v-show="genresCard.length > 0 ">Genere:</span>
+            <span class="mx-1 mb-2" v-for="(genre, index) in genresCard" :key="`genre${index}`">{{genre.name}},</span>
+            <br>
+            <span class="text-uppercase" v-show="cardCast.length > 0 ">Cast:</span>
+            <span class="mx-1" v-for="(actor, index) in cardCast" :key="`actor${index}`">{{actor.name}},</span>
+
+          </div>
+          
         </div> 
       </div>
     </div>
@@ -73,11 +81,13 @@ export default {
 
             if(item === ' '){
               this.genresCard =  response.data.genres;
+              console.log(this.genresCard,'generi_____');
             }
 
             if(item === '/credits'){
               this.cardCast =  response.data.cast;
               this.cardCast.length = 4;
+              console.log(this.cardCast,'cast_____');
             } 
           })
         })
@@ -163,6 +173,12 @@ export default {
           background-color: $redColor;
           font-size: 0.9rem;
         }
+
+        .plus{
+          font-size: 0.7rem;
+          overflow: auto;
+        }
+
       }
 
     .img-box{

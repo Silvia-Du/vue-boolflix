@@ -56,15 +56,12 @@ methods:{
       params: this.apiObject
       })
       .then(response=>{
-        console.log(response.data.results);
         if(type === 'movie'){
           this.movieContainer = response.data.results;
-          console.log(this.movieContainer);
         }
 
         if(type === 'tv'){
           this.seriesContainer = response.data.results;
-          console.log(this.seriesContainer);
         }
        
       })
