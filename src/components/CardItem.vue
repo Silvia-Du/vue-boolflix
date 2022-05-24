@@ -15,7 +15,11 @@
           <!-- <p v-if="card.original_language == 'en'">Original title:{{card.original_title}}</p> -->
           <span v-if="object.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
           <span v-else>lingua originale :<flag :iso="object.original_language"/></span>
-          <p class=""><i class="fa-solid fa-star"></i>{{object.vote_average}}</p>
+          <div class="d-flex my-3">
+            <span>Vote:</span>
+            <i v-for="(string, index) in fullStar" :key="index" :class="`fa-${string} fa-star`"></i>
+          </div>
+          
           <button 
           @click="showInfo = !showInfo"
           type="button" class="btn btn-danger">More Info</button>
@@ -38,38 +42,32 @@ export default {
     return{
       imgUrl: 'https://image.tmdb.org/t/p/w500',
       showInfo: false,
-      languageString: ''
+      languageString: '',
+      voteNum: this.object.vote_average,
    
     }
   },
 
-  // computed:{
+  computed:{
 
-  //   getObject(){
+    fullStar(){
+        let star = [];
+        let fullStar = Math.floor(this.voteNum / 2) ;
+        let rest = 5 - fullStar;
+        for(let i= 0; i< fullStar; i++){
+          star.push('solid');
+        }
 
-  //     let objectToPrint = {
-  //       name:'',
-  //       originalName:'',
-  //       imgPath: '',
-  //       original_language: '',
-  //       vote: ''
-  //     } 
-  //    if(type === 'movie'){
-  //      objectToPrint = this.object;
-  //      objectToPrint.name = this.object.title;
-  //      objectToPrint.original_language = this.object.original_title;
-  //      objectToPrint.vote = this.object.
-  //    }
+        
 
-  //    if(type === 'tv'){
-  //       objectToPrint = this.serieItem;
-  //       objectToPrint.name = this.object.title;
-  //       objectToPrint.original_language = this.object.original_title;
-  //    }
-  //    return objectToPrint
-  //  }
+        for(let i=0; i< rest; i++){
+          star.push('regular');
+        }
+        return star;
+      }
 
-  // }
+
+  }
 }
 
 
@@ -113,6 +111,10 @@ export default {
       .title{
         font-weight: bold;
         font-size: 1rem;
+      }
+
+      i{
+       color: yellow; 
       }
 
       button{

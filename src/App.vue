@@ -29,6 +29,11 @@ data(){
     researchType:['movie', 'tv'],
     checkSting: '',
     typeOfResearch:'',
+    apiObject: {
+        api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
+        query: '',
+        language: 'it-IT'
+      } 
   }
 },
 
@@ -42,15 +47,11 @@ methods:{
 
   getData(receivedSTring){
     this.checkSting = receivedSTring;
-
+    this.apiObject.query = receivedSTring;
     this.researchType.forEach(type =>{
       
       axios.get(`https://api.themoviedb.org/3/search/${type}/?`,{
-      params: {
-        api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
-        query: receivedSTring,
-        language: 'it-IT'
-      } 
+      params: this.apiObject
       })
       .then(response=>{
         console.log(response.data.results);
