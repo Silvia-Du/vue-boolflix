@@ -1,18 +1,18 @@
 <template>
-  <main>
 
-    <div class="container d-flex flex-wrap pt-5 justify-content-center">
+  <main class="text-center py-5">
 
-      <div class="emptyResearch mt-5" v-if="checkInput == '' ">
-        <h3>Che cosa vuoi vedere?</h3>
-      </div>
-      <div class="errorResearch mt-5" v-else-if="selectedFilms.length == 0 ">
-        <h3>Errore di caricamento, la ricerca non ha prodotto risultati</h3>
-      </div>
-      <div v-else>
-        <ContainerComp :cardContainer="selectedFilms" :typeString="'Film'"/>
-        <ContainerComp :cardContainer="selectedSeries" :typeString="'Serie'"/>
-      </div>
+    <h3 class="emptyResearch mt-5" v-if="checkInput == '' ">
+    Che cosa vuoi vedere?
+    </h3>
+      
+    <h3 class="errorResearch mt-5" v-else-if="selectedFilms.length == 0 ">
+    Errore di caricamento, la ricerca non ha prodotto risultati
+    </h3>
+      
+    <div v-else>
+      <ContainerComp :cardContainer="selectedFilms" :typeString="'Film'" v-if="onlyFilms"/>
+      <ContainerComp :cardContainer="selectedSeries" :typeString="'Serie'" v-if="onlySeries"/>
     </div>
 
   </main>
@@ -26,7 +26,8 @@ export default {
     name: "MainComp",
     props: {
         checkInput: String,
-        resarchType: String,
+        onlyFilms: Boolean,
+        onlySeries: Boolean,
         selectedFilms: Array,
         selectedSeries: Array
     },
@@ -50,10 +51,7 @@ export default {
 main{
   min-height: calc(100vh - 80px);
   background-color: $bgColor;
-
-  .emptyResearch, .errorResearch{
-    color: white;
-  }
+  color: white;
   
 }
 

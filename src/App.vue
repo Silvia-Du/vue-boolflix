@@ -2,7 +2,7 @@
   <div id="app">
     
     <HeaderComp @getTitleToSearch ="getData" @getTypeResearch="getTypeResearch"/>
-    <MainComp :selectedFilms ="movieContainer" :selectedSeries="seriesContainer" :checkInput="checkSting" :resarchType="typeOfResearch"/>
+    <MainComp :selectedFilms ="movieContainer" :selectedSeries="seriesContainer" :checkInput="checkSting" :onlyFilms="showFilms" :onlySeries="showSeries"/>
 
   </div>
 </template>
@@ -28,7 +28,8 @@ data(){
     seriesContainer: [],
     researchType:['movie', 'tv'],
     checkSting: '',
-    typeOfResearch:'',
+    showFilms: true,
+    showSeries:true,
     apiObject: {
         api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
         query: '',
@@ -40,9 +41,9 @@ data(){
 methods:{
 
   
-  getTypeResearch(stringOfType){
-    this.typeOfResearch = stringOfType;
-    console.log(this.typeOfResearch);
+  getTypeResearch(onlyFilm, onlySeries){
+    this.showFilms = onlyFilm;
+    this.showSeries= onlySeries;
   },
 
   getData(receivedSTring){

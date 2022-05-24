@@ -2,9 +2,9 @@
   <div class="_header d-flex align-items-center justify-content-between px-3">
     <div class="left-btn-box d-flex">
 
-      <img class="mt-2" src="../assets/img/logo.png" alt="logo">
-      <button @click="$emit('getTypeResearch', 'movie')" type="button" class="btn btn-dark">Film</button>
-      <button @click="$emit('getTypeResearch', 'tv')" type="button" class="btn btn-dark">Serie</button>
+      <img @click="showAll()" class="mt-2" src="../assets/img/logo.png" alt="logo">
+      <button @click="onlyFilm()" type="button" class="btn btn-dark">Film</button>
+      <button @click="onlySeries()" type="button" class="btn btn-dark">Serie</button>
     </div>
 
     <div class="d-flex">
@@ -30,6 +30,8 @@ export default {
   data(){
     return{
       tipedText: '',
+      showFilm: true,
+      showSeries: true
     }
   },
 
@@ -40,6 +42,24 @@ export default {
       this.$emit('getTitleToSearch', this.tipedText);
       this.tipedText = ''
     },
+
+    showAll(){
+      this.showFilm = true;
+      this.showSeries = true;
+      this.$emit('getTypeResearch', this.showFilm, this.showSeries)
+    },
+
+    onlyFilm(){
+      this.showFilm = true;
+      this.showSeries = false;
+      this.$emit('getTypeResearch', this.showFilm, this.showSeries)
+    },
+
+    onlySeries(){
+      this.showSeries = true;
+      this.showFilm = false;
+      this.$emit('getTypeResearch',this.showFilm, this.showSeries)
+    }
 
   }
 }

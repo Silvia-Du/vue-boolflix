@@ -1,17 +1,17 @@
 <template>
 
-  <div class="card">
+  <div class="_card d-flex flex-column">
 
       
 
         <img class="img-fluid" :src="`${imgUrl}${card.poster_path}`" :alt="card.title">
-
+        <img v-if="card.poster_path == null" :src="require('../assets/img/img-alt.png')" alt="">
         
         <!-- layover -->
         <div class="layover text-center d-flex flex-column justify-content-center align-items-center">
           <p class="title">Title: {{card.title || card.name}}</p>
-  
           <p>Original title:{{card.original_title || card.original_name}}</p>
+          
           <span v-if="card.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
           <span v-else>lingua originale :<flag :iso="card.original_language"/></span>
           <div class="d-flex my-3">
@@ -74,18 +74,21 @@ export default {
 
 <style lang="scss">
 
-  .card{
+  ._card{
+    flex-shrink: 0;
+    border-radius: 0.40rem;
     position: relative;
-    flex-basis: 230px;
-    height: 330px;
-    margin: 10px;
-    border-radius: 10px;
+    width: 250px;
+    height: 355px;
+    margin: 30px 10px;
     overflow: hidden;
-    background-color: black;
+    background-color: rgb(218, 212, 212);
     box-shadow: 10px 10px 15px black;
     transition: all 1s;
+    background-image: require('../assets/img/alt.png');
     &:hover{
       transform: scale(1.2);
+      z-index: 999;
     }
     &:Hover .layover{
       opacity: 100%;
