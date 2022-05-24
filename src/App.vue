@@ -49,6 +49,7 @@ methods:{
   getData(receivedSTring){
     this.checkSting = receivedSTring;
     this.apiObject.query = receivedSTring;
+    
     this.researchType.forEach(type =>{
       
       axios.get(`https://api.themoviedb.org/3/search/${type}/?`,{

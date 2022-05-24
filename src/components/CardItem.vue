@@ -28,6 +28,7 @@
           type="button" class="btn btn-danger">More Info</button>
           <span v-show="genresCard.length > 0 ">Genere:</span>
           <span v-for="(genre, index) in genresCard" :key="index">{{genre.name,}}</span>
+          <span v-for="(actor, index) in cardCast" :key="index">{{actor.original_name,}}</span>
         <!-- <MoreInfoComp v-show="clickedCard === card.id" :data="card.id"/> -->
 
 
@@ -53,28 +54,40 @@ export default {
             showInfo: false,
             languageString: "",
             voteNum: this.card.vote_average,
-            apiGenre: `https://api.themoviedb.org/3/${this.type[1]}/${this.card.id}?`,
-            apiCast: `https://api.themoviedb.org/3/${this.type[1]}/${this.card.id}/credits?`,
+
             apiObject: {
               api_key: 'e7a2cd392c6eda895fa73f2972eca6a2',
               language: 'it-IT'
             },
 
-            genresCard: []
+            genresCard: [],
+            cardCast:[],
+            getCredits:[' ', '/credits']
 
         };
     },
 
     methods:{
       shwInfo(){
+        this.getCredits.forEach(item =>{
 
-        axios.get(this.apiGenre, {
-          params: this.apiObject
-        })
-        .then(response =>{
-          console.log(response.data.genres);
-          this.genresCard =  response.data.genres;
-          
+          axios.get(`https://api.themoviedb.org/3/${this.type[1]}/${this.card.id}${item}?`, {
+            params: this.apiObject
+          })
+          .then(response =>{
+
+            if(item === ' '){
+              console.log(response.data.genres, 'generi');
+              this.genresCard =  response.data.genres;
+            }
+
+            if(item === '/credits'){
+              this.cardCast =  response.data.cast;
+              this.cardCast.length = 4;
+              console.log(this.cardCast, 'eccolo');
+            }
+            
+          })
         })
 
       }
