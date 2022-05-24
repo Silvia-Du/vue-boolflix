@@ -2,9 +2,9 @@
   <div class="_header d-flex align-items-center justify-content-between px-3">
     <div class="left-btn-box d-flex">
 
-      <img @click="showAll()" class="mt-2" src="../assets/img/logo.png" alt="logo">
-      <button @click="onlyFilm()" type="button" class="btn btn-dark">Film</button>
-      <button @click="onlySeries()" type="button" class="btn btn-dark">Serie</button>
+      <img @click="showType(true, true)" class="mt-2" src="../assets/img/logo.png" alt="logo">
+      <button @click="showType(true, false)" type="button" class="btn btn-dark">Film</button>
+      <button @click="showType(false, true)" type="button" class="btn btn-dark">Serie</button>
     </div>
 
     <div class="d-flex">
@@ -43,23 +43,12 @@ export default {
       this.tipedText = ''
     },
 
-    showAll(){
-      this.showFilm = true;
-      this.showSeries = true;
+    showType(isFilm, isTv){
+      this.showFilm = isFilm;
+      this.showSeries = isTv;
       this.$emit('getTypeResearch', this.showFilm, this.showSeries)
-    },
-
-    onlyFilm(){
-      this.showFilm = true;
-      this.showSeries = false;
-      this.$emit('getTypeResearch', this.showFilm, this.showSeries)
-    },
-
-    onlySeries(){
-      this.showSeries = true;
-      this.showFilm = false;
-      this.$emit('getTypeResearch',this.showFilm, this.showSeries)
     }
+
 
   }
 }

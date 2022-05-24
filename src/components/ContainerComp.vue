@@ -1,12 +1,16 @@
 <template>
 
   <div class="container-fluid d-flex flex-column pt-5 px-5">
-    <h2 class="mb-5 align-self-baseline">{{typeString}}</h2>
+    <h2 class="mb-5 align-self-baseline">{{typeArray[0]}}</h2>
     <div class="_row d-flex">
       <CardItem
       v-for="item in cardContainer" :key="item.id"
-      :card ="item" :type="'movie'"/>
+      :card ="item" :type="typeArray"
+      @getCardInfo="getMoreInfo"/>
     </div>
+
+
+
 
   </div>
 
@@ -20,9 +24,15 @@ import CardItem from './CardItem.vue';
 export default {
   name: 'MovieComp',
   props:{
-    typeString: String,
+    typeArray: Array,
     cardContainer: Array,
     
+  },
+
+  methods:{
+    getMoreInfo(){
+
+    }
   },
 
   components:{ CardItem }

@@ -11,8 +11,8 @@
     </h3>
       
     <div v-else>
-      <ContainerComp :cardContainer="selectedFilms" :typeString="'Film'" v-if="onlyFilms"/>
-      <ContainerComp :cardContainer="selectedSeries" :typeString="'Serie'" v-if="onlySeries"/>
+      <ContainerComp :cardContainer="selectedFilms" :typeArray="typeFilm" v-if="onlyFilms"/>
+      <ContainerComp :cardContainer="selectedSeries" :typeArray="typeSerie" v-if="onlySeries"/>
     </div>
 
   </main>
@@ -35,7 +35,8 @@ export default {
 
     data(){
       return{
-
+        typeFilm:['Film', 'movie'],
+        typeSerie:['Serie', 'tv']
       }
     },
 
