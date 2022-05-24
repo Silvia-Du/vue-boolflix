@@ -1,10 +1,10 @@
 <template>
 
   <div class="container d-flex flex-wrap pt-5 debug">
-    <h2>Film</h2>
+    <h2>{{typeString}}</h2>
     <CardItem
     v-for="item in cardContainer" :key="item.id"
-    :object ="item" :type="'movie'"/>
+    :card ="item" :type="'movie'"/>
 
   </div>
 
@@ -18,7 +18,9 @@ import CardItem from './CardItem.vue';
 export default {
   name: 'MovieComp',
   props:{
-    cardContainer: Array
+    typeString: String,
+    cardContainer: Array,
+    
   },
 
   components:{ CardItem }

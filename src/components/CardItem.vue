@@ -4,17 +4,16 @@
 
       
 
-        <img class="img-fluid" :src="`${imgUrl}${object.poster_path}`" :alt="object.title">
+        <img class="img-fluid" :src="`${imgUrl}${card.poster_path}`" :alt="card.title">
 
         
         <!-- layover -->
         <div class="layover text-center d-flex flex-column justify-content-center align-items-center">
-          <p v-if="type === 'movie'" class="title">Title: {{object.title}}</p>
-          <p v-else class="title">Title: {{object.name}}</p>
+          <p class="title">Title: {{card.title || card.name}}</p>
   
-          <!-- <p v-if="card.original_language == 'en'">Original title:{{card.original_title}}</p> -->
-          <span v-if="object.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
-          <span v-else>lingua originale :<flag :iso="object.original_language"/></span>
+          <p>Original title:{{card.original_title || card.original_name}}</p>
+          <span v-if="card.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
+          <span v-else>lingua originale :<flag :iso="card.original_language"/></span>
           <div class="d-flex my-3">
             <span>Vote:</span>
             <i v-for="(string, index) in fullStar" :key="index" :class="`fa-${string} fa-star`"></i>
@@ -34,7 +33,7 @@
 export default {
   name: 'CardItem',
   props: {
-    object: Object,
+    card: Object,
     type: String
   },
 
@@ -43,7 +42,7 @@ export default {
       imgUrl: 'https://image.tmdb.org/t/p/w500',
       showInfo: false,
       languageString: '',
-      voteNum: this.object.vote_average,
+      voteNum: this.card.vote_average,
    
     }
   },

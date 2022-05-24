@@ -10,8 +10,8 @@
         <h3>Errore di caricamento, la ricerca non ha prodotto risultati</h3>
       </div>
       <div v-else>
-        <MovieComp :cardContainer="selectedFilms"/>
-        <SeriesComp :seriesContainer="selectedSeries" />
+        <ContainerComp :cardContainer="selectedFilms" :typeString="'Film'"/>
+        <ContainerComp :cardContainer="selectedSeries" :typeString="'Serie'"/>
       </div>
     </div>
 
@@ -20,8 +20,8 @@
 
 <script>
 
-import MovieComp from './MovieComp.vue';
-import SeriesComp from './SeriesComp.vue';
+import ContainerComp from './ContainerComp.vue';
+
 export default {
     name: "MainComp",
     props: {
@@ -30,7 +30,7 @@ export default {
         selectedFilms: Array,
         selectedSeries: Array
     },
-    components: { MovieComp, SeriesComp },
+    components: { ContainerComp },
 
     data(){
       return{
