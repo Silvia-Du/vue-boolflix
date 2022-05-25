@@ -1,7 +1,8 @@
 <template>
 
   <div class="container-fluid d-flex flex-column pt-5 px-5">
-    <h2 class="mb-5 align-self-baseline">{{typeArray[0]}}</h2>
+    <h2 v-if="!typeArray" class="mt-4 mb-3 align-self-baseline">{{popularType}}</h2>
+    <h2 v-else class="mt-4 mb-3 align-self-baseline">{{typeArray[0]}}</h2>
     <div class="_row d-flex">
       <CardItem
       v-for="item in cardContainer" :key="item.id"

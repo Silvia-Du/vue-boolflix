@@ -1,8 +1,12 @@
 <template>
 
-  <main class="text-center py-5">
+  <main class="text-center pb-5">
 
-    <ContainerComp v-if="checkInput === '' " :cardContainer="popularMovie" :typeArray="typePopular"/>
+    <div class="jumbotron debug">
+      <img class="img-fluid" :src="popularContainer[0].poster_path" :alt="popularMovie[0].title">
+    </div>
+
+    <ContainerComp v-if="checkInput === '' " :cardContainer="popularMovie" :popularType="'Most Popular'"/>
       
     <h3 class="errorResearch mt-5" v-else-if="selectedFilms.length == 0 ">
     Errore di caricamento, la ricerca non ha prodotto risultati
@@ -34,11 +38,20 @@ export default {
 
     data(){
       return{
-        typePopular:['MostPopular'],
+        selectedFilm: 0,
         typeFilm:['Film', 'movie'],
-        typeSerie:['Serie', 'tv']
+        typeSerie:['Serie', 'tv'],
+        popularContainer: []
       }
     },
+
+    watch:{
+      popularMovie(){
+        this.popularContainer = this.popularMovie;
+        console.log(this.popularContainer[0].backdrop_path, '_____');
+
+      }
+    }
 
 
 }
@@ -50,9 +63,13 @@ export default {
 
 
 main{
-  min-height: calc(100vh - 80px);
+  min-height: 100vh;
   background-color: $bgColor;
   color: white;
+
+  .jumbotron{
+    height: 80vh;
+  }
   
 }
 
