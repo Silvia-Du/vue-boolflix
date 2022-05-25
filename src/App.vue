@@ -70,16 +70,7 @@ methods:{
       })
 
     }) 
-    
-
-    
-   
-
   },
-
-
-
-
 },
 
 
@@ -88,6 +79,7 @@ methods:{
 
 <style lang="scss">
 
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 @import './assets/style/general.scss';
 
 </style>
