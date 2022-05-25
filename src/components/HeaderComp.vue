@@ -60,7 +60,9 @@ export default {
 
 ._header{
   height: 80px;
+  width: 100%;
   background-color: $bgColor;
+  position: fixed;
 .left-btn-box{
   button{
     background-color: $bgColor;

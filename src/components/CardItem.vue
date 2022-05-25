@@ -6,8 +6,8 @@
     <div class="_card d-flex mx-5" @mouseleave="resetFunction()">
 
       <div class="img-box">
-        <img class="img-fluid" :src="`${imgUrl}${card.poster_path}`" :alt="card.title">
-        <img v-if="card.poster_path == null" :src="require('../assets/img/img-alt.png')" alt="">
+        <img v-if="card.poster_path" class="img-fluid" :src="`${imgUrl}${card.poster_path}`" :alt="card.title || card.name">
+        <div class="placeholder d-flex justify-content-center align-items-center">{{card.title || card.name}}</div>
       </div>
 
       <div class="text-box pt-3">
@@ -132,8 +132,6 @@ export default {
     transition: all 2s;
     background-color: $bgColor;
 
-    
-    
     &:hover{
       transform: scale(1.1);
       border-radius: 10px;
@@ -192,9 +190,14 @@ export default {
       transition: all 1s;
       border-radius: 10px;
       img{
-        width: 100%;
         border-radius: 10px;
+      }
 
+      .placeholder{
+        width: 100%;
+        height: 100%;
+        color: white;
+        background-color: lighten( $bgColor, 15%);
       }
     }
 
