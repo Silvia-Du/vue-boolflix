@@ -63,6 +63,7 @@ export default {
   width: 100%;
   // background-color: $bgColor;
   position: fixed;
+  z-index: 999;
 .left-btn-box{
   button{
     background-color: $bgColor;

@@ -2,11 +2,14 @@
 
   <main class="text-center pb-5">
 
-    <div class="jumbotron debug">
-      <img class="img-fluid" :src="popularContainer[0].poster_path" :alt="popularMovie[0].title">
+    <div class="jumbotron transparency">
+      <img class="" :src="`${imgUrl}${popularContainer[selectedFilm].backdrop_path}`" :alt="popularMovie[selectedFilm].title">
     </div>
+    <div>
 
-    <ContainerComp v-if="checkInput === '' " :cardContainer="popularMovie" :popularType="'Most Popular'"/>
+      </div>
+      <ContainerComp v-if="checkInput === '' " :cardContainer="popularMovie" :popularType="'Most Popular'"/>
+
       
     <h3 class="errorResearch mt-5" v-else-if="selectedFilms.length == 0 ">
     Errore di caricamento, la ricerca non ha prodotto risultati
@@ -41,7 +44,9 @@ export default {
         selectedFilm: 0,
         typeFilm:['Film', 'movie'],
         typeSerie:['Serie', 'tv'],
-        popularContainer: []
+        popularContainer: [],
+        imgUrl: "https://image.tmdb.org/t/p/w500",
+
       }
     },
 
@@ -68,7 +73,13 @@ main{
   color: white;
 
   .jumbotron{
-    height: 80vh;
+    height: 70vh;
+    &.transparency{
+      mask-image: linear-gradient(black, transparent)
+    }
+    img{
+      width: 100%;
+    }
   }
   
 }
