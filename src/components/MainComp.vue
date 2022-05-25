@@ -2,9 +2,7 @@
 
   <main class="text-center py-5">
 
-    <h3 class="emptyResearch mt-5" v-if="checkInput == '' ">
-    Che cosa vuoi vedere?
-    </h3>
+    <ContainerComp v-if="checkInput === '' " :cardContainer="popularMovie" :typeArray="typePopular"/>
       
     <h3 class="errorResearch mt-5" v-else-if="selectedFilms.length == 0 ">
     Errore di caricamento, la ricerca non ha prodotto risultati
@@ -29,12 +27,14 @@ export default {
         onlyFilms: Boolean,
         onlySeries: Boolean,
         selectedFilms: Array,
-        selectedSeries: Array
+        selectedSeries: Array,
+        popularMovie: Array
     },
     components: { ContainerComp },
 
     data(){
       return{
+        typePopular:['MostPopular'],
         typeFilm:['Film', 'movie'],
         typeSerie:['Serie', 'tv']
       }

@@ -25,8 +25,8 @@ export default {
   name: 'MovieComp',
   props:{
     typeArray: Array,
+    popularType: String,
     cardContainer: Array,
-    
   },
 
   methods:{

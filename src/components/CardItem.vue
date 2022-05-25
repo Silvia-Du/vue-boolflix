@@ -1,15 +1,14 @@
 <template>
 
- 
+    <div class="_card d-flex mx-3" @mouseleave="resetFunction()">
 
-
-    <div class="_card d-flex mx-5" @mouseleave="resetFunction()">
-
+      <!-- IMAGE -->
       <div class="img-box">
         <img v-if="card.poster_path" class="img-fluid" :src="`${imgUrl}${card.poster_path}`" :alt="card.title || card.name">
         <div class="placeholder d-flex justify-content-center align-items-center">{{card.title || card.name}}</div>
       </div>
 
+      <!-- TEXT A SCOMPARSA -->
       <div class="text-box pt-3">
         <div class="text">
           <p class="title text-uppercase">{{card.title || card.name}}</p>
@@ -18,13 +17,16 @@
           <span v-if="card.original_language == 'en'">lingua originale :<flag iso="gb"/></span>
           <span v-else>lingua originale :<flag :iso="card.original_language"/></span>
 
+          <!-- STAR DIV -->
           <div class="d-flex my-3 justify-content-center align-items-center">
             <span class="me-2">Vote:</span>
             <i v-for="(string, index) in fullStar" :key="index" :class="`fa-${string} fa-star`"></i>
           </div>
 
+          <!-- BUTTON -->
           <button @click="shwInfo()" type="button" class="btn btn-danger">More Info</button>
 
+          <!-- ADDED CARD INFO -->
           <div class="plus mt-2 p-1">
 
             <span class="text-uppercase" v-show="genresCard.length > 0 ">Genere:</span>
@@ -107,6 +109,7 @@ export default {
             for (let i = 0; i < fullStar; i++) {
                 star.push("solid");
             }
+
 
             for (let i = 0; i < rest; i++) {
                 star.push("regular");
