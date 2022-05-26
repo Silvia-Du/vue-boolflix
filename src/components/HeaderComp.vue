@@ -7,7 +7,7 @@
       <button @click="showType(false, true)" type="button" class="btn btn-dark">Serie</button>
     </div>
 
-    <div class="d-flex">
+    <div class="d-flex right">
 
       <input 
       v-model="tipedText" @keyup.enter="startResearch"
@@ -82,6 +82,10 @@ export default {
   }
   .btn-start{
     background-color: $redColor;
+  }
+
+  .right button{
+    border-radius: 5px;
   }
 }
 
