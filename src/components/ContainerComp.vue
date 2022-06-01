@@ -5,7 +5,7 @@
     <h2 v-else class="mt-4 mb-3 align-self-baseline">{{typeArray[0]}}</h2>
 
     <div class="row" v-if="!typeArray">
-      <div class="col-12 d-flex flex-wrap justify-content-center">
+      <div class="col-11 d-flex flex-wrap justify-content-center">
 
         <CardItem 
           v-for="item in cardContainer" :key="item.id"

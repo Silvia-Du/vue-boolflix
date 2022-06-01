@@ -2,16 +2,15 @@
 
   <main class="text-center pb-5" :class="{'pt-5': checkInput !='' }">
 
-    <div v-if="checkInput === '' " class="jumbotron transparency">
+    <div v-if="checkInput === '' " class="jumbotron transparency position-relative" @mouseover="hover= true" @mouseleave="hover= false">
+      <h2 class="title-film-j position-absolute">{{popularContainer[selectedFilm].title}}</h2>
       <img class="" :src="`${imgUrl}${popularContainer[selectedFilm].backdrop_path}`" :alt="popularMovie[selectedFilm].title">
     </div>
-    <div>
-
-      </div>
-      <ContainerComp v-if="checkInput === '' " :cardContainer="popularMovie" :popularType="'Most Popular'"/>
+    
+    <ContainerComp v-if="checkInput === '' " :cardContainer="popularMovie" :popularType="'Most Popular'"/>
 
       
-    <h3 class="errorResearch mt-5" v-else-if="selectedFilms.length == 0 ">
+    <h3 class="error-research mt-5" v-else-if="selectedFilms.length == 0 ">
     Errore di caricamento, la ricerca non ha prodotto risultati
     </h3>
       
@@ -42,6 +41,7 @@ export default {
     data(){
       return{
         selectedFilm: 0,
+        hover: false,
         typeFilm:['Film', 'movie'],
         typeSerie:['Serie', 'tv'],
         popularContainer: [],
@@ -56,6 +56,24 @@ export default {
         console.log(this.popularContainer[0].backdrop_path, '_____');
 
       }
+    },
+
+    methods:{
+
+      switchDown(){
+        this.selectedFilm ++;
+        if(this.activeThumb > this.slides.length -1){
+            this.activeThumb = 0;
+        }
+      }
+    },
+
+    mounted(){
+      setInterval(()=> {
+        if(!this.hover){
+          this.switchDown();  
+        }      
+      }, 3000);
     }
 
 
@@ -73,14 +91,21 @@ main{
   color: white;
 
   .jumbotron{
-    height: 70vh;
+    height: 75vh;
     &.transparency{
       mask-image: linear-gradient(black, transparent)
     }
     img{
       width: 100%;
     }
+
+    .title-film-j{
+      top: 90px;
+      right: 30px;
+      z-index: 880;
+    }
   }
+  
   
 }
 
