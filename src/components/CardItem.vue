@@ -83,13 +83,11 @@ export default {
 
             if(item === ' '){
               this.genresCard =  response.data.genres;
-              console.log(this.genresCard,'generi_____');
             }
 
             if(item === '/credits'){
               this.cardCast =  response.data.cast;
               this.cardCast.length = 4;
-              console.log(this.cardCast,'cast_____');
             } 
           })
         })

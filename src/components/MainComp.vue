@@ -1,8 +1,8 @@
 <template>
 
-  <main class="text-center pb-5">
+  <main class="text-center pb-5" :class="{'pt-5': checkInput !='' }">
 
-    <div class="jumbotron transparency">
+    <div v-if="checkInput === '' " class="jumbotron transparency">
       <img class="" :src="`${imgUrl}${popularContainer[selectedFilm].backdrop_path}`" :alt="popularMovie[selectedFilm].title">
     </div>
     <div>
