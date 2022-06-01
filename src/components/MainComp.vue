@@ -62,8 +62,8 @@ export default {
 
       switchDown(){
         this.selectedFilm ++;
-        if(this.activeThumb > this.slides.length -1){
-            this.activeThumb = 0;
+        if(this.selectedFilm > this.popularContainer.length -1){
+            this.selectedFilm = 0;
         }
       }
     },
